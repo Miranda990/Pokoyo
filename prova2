@@ -1,0 +1,270 @@
+/* ===== Base ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: #1b2a3a;
+  background-color: #eef2f5;
+}
+
+/* ===== Box Model: contêiner principal ===== */
+.container {
+  max-width: 900px;          /* largura máxima */
+  margin: 24px auto;         /* margens automáticas = centralização */
+  padding: 24px 32px;        /* preenchimento interno */
+  background-color: #ffffff;
+  border: 2px solid #c9d5de; /* borda */
+  border-radius: 8px;
+}
+
+.cabecalho {
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-bottom: 3px solid #0f766e;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #0f4c4a;
+}
+
+.cabecalho p {
+  margin: 4px 0 0;
+  color: #52626f;
+}
+
+h2 {
+  margin: 28px 0 12px;
+  font-size: 1.15rem;
+}
+
+section {
+  margin-bottom: 8px;
+}
+
+/* ===== Formulário ===== */
+form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.campo-largo {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #9fb0bd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: inherit;
+}
+
+/* Destaque do campo ativo durante a digitação */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #0f766e;
+  background-color: #f0fbf9;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.35);
+}
+
+/* ===== Botões ===== */
+.botoes {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0f766e;
+  border: 2px solid #0f766e;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+}
+
+button:hover {
+  background-color: #0b5a54;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button:focus-visible {
+  outline: 3px solid #1b2a3a;
+  outline-offset: 2px;
+}
+
+button.secundario {
+  color: #0f766e;
+  background-color: #ffffff;
+}
+
+button.secundario:hover {
+  color: #ffffff;
+  background-color: #0f766e;
+}
+
+/* ===== Mensagens de validação ===== */
+#mensagem {
+  min-height: 1.5em;
+  margin: 12px 0 0;
+  font-weight: 600;
+}
+
+#mensagem.erro {
+  color: #b42318;
+}
+
+#mensagem.sucesso {
+  color: #0f766e;
+}
+
+/* ===== Tabela de produtos ===== */
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #d6dfe6;
+}
+
+thead th {
+  background-color: #0f4c4a;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f4f7f9;
+}
+
+tbody tr:hover {
+  background-color: #e3f1ef;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.linha-vazia td {
+  text-align: center;
+  color: #52626f;
+  font-style: italic;
+}
+
+button.btn-remover {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: #b42318;
+  background-color: #ffffff;
+  border: 1px solid #b42318;
+}
+
+button.btn-remover:hover {
+  color: #ffffff;
+  background-color: #b42318;
+  box-shadow: none;
+}
+
+/* ===== Resumo financeiro ===== */
+#resumo {
+  padding: 12px 16px;
+  background-color: #f4f7f9;
+  border: 1px solid #d6dfe6;
+  border-left: 5px solid #0f766e;
+  border-radius: 4px;
+}
+
+#resumo p {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+#resumo .total {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #c9d5de;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f4c4a;
+}
+
+/* ===== Saída JSON ===== */
+pre {
+  min-height: 80px;
+  margin: 0;
+  padding: 12px 16px;
+  overflow-x: auto;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  color: #e6edf3;
+  background-color: #1b2a3a;
+  border-radius: 4px;
+}
+
+/* ===== Acessibilidade ===== */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+  button:hover {
+    transform: none;
+  }
+}
+
+/* ===== Telas pequenas ===== */
+@media (max-width: 640px) {
+  .container {
+    padding: 16px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+}
