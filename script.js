@@ -1,14 +1,8 @@
-// ============================================================
-// TechStore Litoral - Controle de Carrinho de Compras
-// ============================================================
 
-// Vetor global que armazena os itens do carrinho
 const carrinho = [];
 
-// Resumo financeiro atual (atualizado a cada renderização)
 let resumoAtual = { subtotal: 0, percentualDesconto: 0, valorDesconto: 0, totalFinal: 0 };
 
-// Referências aos elementos da página
 const formProduto = document.getElementById("formProduto");
 const inputNome = document.getElementById("nome");
 const selectCategoria = document.getElementById("categoria");
@@ -20,14 +14,10 @@ const listaItens = document.getElementById("listaItens");
 const resumo = document.getElementById("resumo");
 const saidaJson = document.getElementById("saidaJson");
 
-// ------------------------------------------------------------
-// Funções auxiliares
-// ------------------------------------------------------------
 function formatarMoeda(valor) {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-// Evita erros de ponto flutuante (ex.: 0.1 * 3 = 0.30000000000000004)
 function arredondar(valor) {
   return Math.round(valor * 100) / 100;
 }
@@ -37,9 +27,7 @@ function mostrarMensagem(texto, ehErro) {
   mensagem.className = ehErro ? "erro" : "sucesso";
 }
 
-// ------------------------------------------------------------
-// Regra de decisão: faixa de desconto (if...else if...else)
-// ------------------------------------------------------------
+
 function obterPercentualDesconto(subtotal) {
   let percentual;
 
@@ -62,9 +50,7 @@ function calcularResumo(subtotal) {
   return { subtotal, percentualDesconto, valorDesconto, totalFinal };
 }
 
-// ------------------------------------------------------------
-// Renderização: percorre o vetor, monta a tabela e soma o total
-// ------------------------------------------------------------
+
 function criarCelula(texto, classe) {
   const td = document.createElement("td");
   td.textContent = texto;
@@ -109,7 +95,6 @@ function atualizarTela() {
 
     listaItens.appendChild(linha);
 
-    // Acumula o valor total bruto
     subtotal += item.subtotalItem;
   }
 
@@ -122,13 +107,9 @@ function atualizarTela() {
       formatarMoeda(resumoAtual.valorDesconto) + "</strong></p>" +
     '<p class="total"><span>Total Final</span><span>' + formatarMoeda(resumoAtual.totalFinal) + "</span></p>";
 
-  // O carrinho mudou, então o JSON exibido antes deixou de valer
   saidaJson.textContent = "";
 }
 
-// ------------------------------------------------------------
-// Função de adição: validação (if/else) + objeto + push()
-// ------------------------------------------------------------
 function adicionarItem(evento) {
   evento.preventDefault();
 
@@ -147,7 +128,6 @@ function adicionarItem(evento) {
     mostrarMensagem("Informe uma quantidade inteira maior ou igual a 1.", true);
     inputQuantidade.focus();
   } else {
-    // Objeto literal que representa o produto
     const produto = {
       nome: nome,
       categoria: categoria,
@@ -165,9 +145,6 @@ function adicionarItem(evento) {
   }
 }
 
-// ------------------------------------------------------------
-// Remoção de item (botão "Remover" de cada linha)
-// ------------------------------------------------------------
 function removerItem(evento) {
   const botao = evento.target.closest("button[data-indice]");
 
@@ -179,9 +156,6 @@ function removerItem(evento) {
   }
 }
 
-// ------------------------------------------------------------
-// Serialização JSON: monta o pedido e usa JSON.stringify()
-// ------------------------------------------------------------
 function exportarPedido() {
   if (carrinho.length === 0) {
     mostrarMensagem("Adicione ao menos um produto antes de exportar o pedido.", true);
@@ -202,12 +176,9 @@ function exportarPedido() {
   mostrarMensagem("Pedido exportado com sucesso.", false);
 }
 
-// ------------------------------------------------------------
-// Eventos
-// ------------------------------------------------------------
+
 formProduto.addEventListener("submit", adicionarItem);
 listaItens.addEventListener("click", removerItem);
 btnExportar.addEventListener("click", exportarPedido);
 
-// Primeira renderização (carrinho vazio)
 atualizarTela();
