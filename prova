@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechStore Litoral - Carrinho de Compras</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main class="container">
+    <header class="cabecalho">
+      <h1>TechStore Litoral</h1>
+      <p>Controle de carrinho de compras e fechamento de pedido</p>
+    </header>
+
+    <section aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Adicionar produto</h2>
+
+      <form id="formProduto" novalidate>
+        <div class="campo campo-largo">
+          <label for="nome">Nome do Produto</label>
+          <input type="text" id="nome" name="nome" placeholder="Ex.: Teclado mecânico" required>
+        </div>
+
+        <div class="campo">
+          <label for="categoria">Categoria</label>
+          <select id="categoria" name="categoria" required>
+            <option value="Periféricos">Periféricos</option>
+            <option value="Hardware">Hardware</option>
+            <option value="Acessórios">Acessórios</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="valorUnitario">Valor Unitário (R$)</label>
+          <input type="number" id="valorUnitario" name="valorUnitario" step="0.01" placeholder="0,00" required>
+        </div>
+
+        <div class="campo">
+          <label for="quantidade">Quantidade</label>
+          <input type="number" id="quantidade" name="quantidade" min="1" step="1" placeholder="1" required>
+        </div>
+
+        <div class="botoes">
+          <button type="submit" id="btnAdicionar">Adicionar ao Carrinho</button>
+          <button type="button" id="btnExportar" class="secundario">Exportar Pedido (JSON)</button>
+        </div>
+      </form>
+
+      <p id="mensagem" role="alert"></p>
+    </section>
+
+    <section aria-labelledby="titulo-itens">
+      <h2 id="titulo-itens">Itens do carrinho</h2>
+      <div class="tabela-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Produto</th>
+              <th scope="col">Categoria</th>
+              <th scope="col" class="num">Valor Unit.</th>
+              <th scope="col" class="num">Qtd.</th>
+              <th scope="col" class="num">Subtotal</th>
+              <th scope="col"><span class="visualmente-oculto">Ações</span></th>
+            </tr>
+          </thead>
+          <tbody id="listaItens"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="titulo-resumo">
+      <h2 id="titulo-resumo">Resumo financeiro</h2>
+      <div id="resumo" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="titulo-json">
+      <h2 id="titulo-json">Pedido exportado</h2>
+      <pre id="saidaJson" aria-live="polite"></pre>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
